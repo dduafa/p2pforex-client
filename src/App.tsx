@@ -1,12 +1,14 @@
-import React from 'react';
 import { useAppSelector } from '@appredux/hooks';
 import { authSelector } from '@features/auth/auth-reducer';
+import { useRoutes } from 'react-router-dom';
+import AppRoutes from '@/routes/app-routes';
 
 function App() {
-  const something = useAppSelector(authSelector);
+  const { isAuthenticated } = useAppSelector(authSelector);
 
-  console.log({ something });
-  return <div>Hello</div>;
+  const routes = AppRoutes(isAuthenticated);
+
+  return useRoutes(routes);
 }
 
 export default App;
