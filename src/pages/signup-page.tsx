@@ -1,7 +1,3 @@
-import React from 'react';
+import SignupComponent from '@/features/auth/signup/signup-component';
 
-const SignupPage = () => {
-  return <div>SignupPage</div>;
-};
-
-export default SignupPage;
+export default SignupComponent;
