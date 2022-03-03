@@ -4,9 +4,11 @@ import { signupUser } from '../auth-service';
 import styled from 'styled-components';
 import signUpSchema from './signup-schema';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SignupComponent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     errors,
@@ -21,6 +23,8 @@ const SignupComponent = () => {
       password: '',
       firstname: '',
       lastname: '',
+      email: '',
+      phonenumber: '',
     },
 
     validationSchema: signUpSchema,
@@ -28,7 +32,7 @@ const SignupComponent = () => {
     async onSubmit(payload, { setSubmitting }) {
       try {
         setSubmitting(true);
-        await dispatch(signupUser(payload));
+        await dispatch(signupUser(payload, navigate));
       } catch (e) {
         console.error(e);
       } finally {

@@ -5,7 +5,7 @@ import { DashboardPage, SignupPage, LoginPage } from '@/pages';
 const AppRoutes = (isAuthenticated: boolean) => {
   return [
     {
-      path: 'app',
+      path: '/',
       element: isAuthenticated ? (
         <MainLayoutComponent />
       ) : (
@@ -13,6 +13,7 @@ const AppRoutes = (isAuthenticated: boolean) => {
       ),
       children: [
         { path: 'dashboard', element: <DashboardPage /> },
+        { path: '/', element: <Navigate to="/dashboard" />},
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
@@ -21,11 +22,12 @@ const AppRoutes = (isAuthenticated: boolean) => {
       element: !isAuthenticated ? (
         <AuthLayoutComponent />
       ) : (
-        <Navigate to="app/dashboard" />
+        <Navigate to="dashboard" />
       ),
       children: [
         { path: 'signup', element: <SignupPage /> },
         { path: 'login', element: <LoginPage /> },
+        { path: 'changepassword', element: <div>Change password page</div> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },

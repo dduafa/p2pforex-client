@@ -1,28 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@appredux/store';
+import { IUserData, IAuthState, IError } from './types';
 
 export const authSlice = 'authSlice';
 
-interface AuthState {
-  user?: User;
-  loading: boolean;
-  isAuthenticated: boolean;
-  error: string;
-}
-
-interface User {
-  firstname: string;
-  lastname: string;
-  email: string;
-}
-// interface AuthError {
-//   message: string[];
-// }
-
-const initialState: AuthState = {
+const initialState: IAuthState = {
   loading: false,
   isAuthenticated: false,
-  error: '',
+  errors: [],
+  user: undefined,
 };
 
 const authReducer = createSlice({
@@ -32,12 +18,22 @@ const authReducer = createSlice({
     setLoading: (state, { payload }: PayloadAction<boolean>) => {
       state.loading = payload;
     },
-    setError: (state, { payload }: PayloadAction<string>) => {
-      state.error = payload;
+    setCurrentUser: (
+      state,
+      { payload }: PayloadAction<IUserData | undefined>
+    ) => {
+      state.user = payload;
+    },
+    setAuthenticated: (state, { payload }: PayloadAction<boolean>) => {
+      state.isAuthenticated = payload;
+    },
+    setErrors: (state, { payload }: PayloadAction<IError>) => {
+      state.errors = payload;
     },
   },
 });
 
-export const { setLoading, setError } = authReducer.actions;
+export const { setLoading, setErrors, setCurrentUser, setAuthenticated } =
+  authReducer.actions;
 export const authSelector = (state: RootState) => state.authSlice;
 export default authReducer.reducer;
