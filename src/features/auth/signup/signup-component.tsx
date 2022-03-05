@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import signUpSchema from './signup-schema';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import InputContainer from '@/components/common/input/input-container';
 
 const SignupComponent = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const SignupComponent = () => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <div>
           <input
             aria-label="First name"
@@ -84,7 +85,7 @@ const SignupComponent = () => {
         <button type="submit" disabled={isSubmitting}>
           Sign Up
         </button>
-      </form>
+      </Form>
     </Container>
   );
 };
@@ -94,6 +95,16 @@ const Container = styled.div`
   align-items: 'center';
   justify-content: 'center';
   width: 50px;
+`;
+
+const Form = styled.form`
+  margin: 0 auto;
+  width: 100%;
+  max-width: 414px;
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 `;
 
 export default SignupComponent;

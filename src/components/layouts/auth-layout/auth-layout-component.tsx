@@ -1,19 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import styled from 'styled-components';
+import { MainWrapper } from './auth-layout-styles';
 
 const AuthLayoutComponent = () => {
   return (
-    <Container>
+    <MainWrapper>
       <Outlet />
-    </Container>
+    </MainWrapper>
   );
 };
-
-const Container = styled.div`
-  display: 'flex';
-  align-items: 'center';
-  justify-content: 'center';
-`;
 
 export default AuthLayoutComponent;
