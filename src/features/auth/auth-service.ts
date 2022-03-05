@@ -9,6 +9,7 @@ import { Dispatch, Action, ThunkAction } from '@reduxjs/toolkit';
 import { RootState } from '@appredux/store';
 import { IUserLogin, IUserSignup, IChangePassword } from './types';
 import { savetToken, clearTokens } from '@helpers/localstorage';
+import dispatchError from '@/helpers/dispatch-error';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, Action>;
 
@@ -18,6 +19,7 @@ export const signupUser =
     try {
       dispatch(setLoading(true));
       const currentUser = await axiosInstance.post('/signup', user);
+      console.log(currentUser);
       if (currentUser.data.isDefaultPassword) {
         navigate('/resetpassword');
         setErrors([{ message: 'Reset Password' }]);
@@ -29,8 +31,8 @@ export const signupUser =
         currentUser.data.tokens.accessToken,
         currentUser.data.tokens.accessToken
       );
-    } catch (error) {
-      dispatch(setErrors([{ message: 'Invalid Credentials' }]));
+    } catch (e) {
+      dispatchError(e, dispatch);
     } finally {
       dispatch(setLoading(false));
     }
@@ -48,8 +50,8 @@ export const changePassword =
         currentUser.data.tokens.accessToken,
         currentUser.data.tokens.accessToken
       );
-    } catch (error) {
-      dispatch(setErrors([{ message: 'Invalid Credentials' }]));
+    } catch (e) {
+      dispatchError(e, dispatch);
     } finally {
       dispatch(setLoading(false));
     }
@@ -72,8 +74,8 @@ export const loginUser =
         currentUser.data.tokens.accessToken,
         currentUser.data.tokens.accessToken
       );
-    } catch (error) {
-      dispatch(setErrors([{ message: '' }]));
+    } catch (e) {
+      dispatchError(e, dispatch);
     } finally {
       dispatch(setLoading(false));
     }
@@ -87,8 +89,8 @@ export const logOutUser =
       dispatch(setCurrentUser(undefined));
       dispatch(setAuthenticated(false));
       clearTokens();
-    } catch (error) {
-      dispatch(setErrors([{ message: '' }]));
+    } catch (e) {
+      dispatchError(e, dispatch);
     } finally {
       dispatch(setLoading(false));
     }
