@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import signUpSchema from './signup-schema';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import InputContainer from '@/components/common/input/input-container';
 
 const SignupComponent = () => {
   const dispatch = useDispatch();
@@ -66,6 +65,17 @@ const SignupComponent = () => {
             placeholder="Last name"
             type="text"
             value={values.lastname}
+          />
+        </div>
+        <div>
+          <input
+            aria-label="Password"
+            name="password"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="Password"
+            type="password"
+            value={values.password}
           />
         </div>
         <div>
