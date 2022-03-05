@@ -2,6 +2,12 @@ export interface IUserLogin {
   email: string;
   password: string;
 }
+
+export interface IChangePassword {
+  password: string;
+  token: string;
+}
+
 export interface IUserSignup extends IUserLogin {
   firstname: string;
   lastname: string;

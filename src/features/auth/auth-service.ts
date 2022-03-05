@@ -7,7 +7,7 @@ import {
 } from './auth-reducer';
 import { Dispatch, Action, ThunkAction } from '@reduxjs/toolkit';
 import { RootState } from '@appredux/store';
-import { IUserLogin, IUserSignup } from './types';
+import { IUserLogin, IUserSignup, IChangePassword } from './types';
 import { savetToken, clearTokens } from '@helpers/localstorage';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, Action>;
@@ -23,6 +23,25 @@ export const signupUser =
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
+      dispatch(setCurrentUser(currentUser.data));
+      dispatch(setAuthenticated(true));
+      savetToken(
+        currentUser.data.tokens.accessToken,
+        currentUser.data.tokens.accessToken
+      );
+    } catch (error) {
+      dispatch(setErrors([{ message: 'Invalid Credentials' }]));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
+export const changePassword =
+  (user: IChangePassword): ThunkResult<void> =>
+  async (dispatch: Dispatch) => {
+    try {
+      dispatch(setLoading(true));
+      const currentUser = await axiosInstance.post('/change_password', user);
       dispatch(setCurrentUser(currentUser.data));
       dispatch(setAuthenticated(true));
       savetToken(
