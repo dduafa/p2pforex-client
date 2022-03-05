@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { signupUser } from '../auth-service';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 import signUpSchema from './signup-schema';
@@ -7,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const SignupComponent = () => {
+  const [pathname] = useState(window.location.pathname);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -25,6 +27,7 @@ const SignupComponent = () => {
       lastname: '',
       email: '',
       phonenumber: '',
+      role: '',
     },
 
     validationSchema: signUpSchema,
@@ -69,15 +72,40 @@ const SignupComponent = () => {
         </div>
         <div>
           <input
-            aria-label="Password"
-            name="password"
+            aria-label="Email"
+            name="email"
             onBlur={handleBlur}
             onChange={handleChange}
-            placeholder="Password"
-            type="password"
-            value={values.password}
+            placeholder="Email"
+            type="text"
+            value={values.email}
           />
         </div>
+        <div>
+          <input
+            aria-label="Phonenumber"
+            name="phonenumber"
+            onBlur={handleBlur}
+            onChange={handleChange}
+            placeholder="Phonenumber"
+            type="text"
+            value={values.phonenumber}
+          />
+        </div>
+        {pathname === '/adminsignup' && (
+          <div>
+            <select
+              name="role"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.role}
+            >
+              <option>----</option>
+              <option value={'admin'}>Admin</option>
+              <option value={'superadmin'}>Superadmin</option>
+            </select>
+          </div>
+        )}
         <div>
           <input
             aria-label="Password"

@@ -26,6 +26,7 @@ const AppRoutes = (isAuthenticated: boolean) => {
       ),
       children: [
         { path: 'signup', element: <SignupPage /> },
+        { path: 'adminsignup', element: <SignupPage /> },
         { path: 'login', element: <LoginPage /> },
         { path: 'changepassword', element: <div>Change password page</div> },
         { path: '*', element: <Navigate to="/404" /> },
