@@ -14,22 +14,20 @@ import dispatchError from '@/helpers/dispatch-error';
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, Action>;
 
 export const signupUser =
-  (user: IUserSignup, navigate: any): ThunkResult<void> =>
+  (userData: IUserSignup, navigate: any): ThunkResult<void> =>
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const {
-        data: { data },
-      } = await axiosInstance.post('/signup', user);
-      console.log(data);
-      if (data.user.isDefaultPassword) {
+      const { data } = await axiosInstance.post('/signup', userData);
+      const { user, tokens } = data.data;
+      if (user.isDefaultPassword) {
         navigate('/resetpassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
-      dispatch(setCurrentUser(data.user));
+      dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
-      savetToken(data.tokens.access, data.tokens.access);
+      savetToken(tokens.access, tokens.access);
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -38,16 +36,15 @@ export const signupUser =
   };
 
 export const changePassword =
-  (user: IChangePassword): ThunkResult<void> =>
+  (userData: IChangePassword): ThunkResult<void> =>
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const {
-        data: { data },
-      } = await axiosInstance.post('/change_password', user);
-      dispatch(setCurrentUser(data.user));
+      const { data } = await axiosInstance.post('/change_password', userData);
+      const { user, tokens } = data.data;
+      dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
-      savetToken(data.tokens.access, data.tokens.access);
+      savetToken(tokens.access, tokens.access);
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -56,22 +53,20 @@ export const changePassword =
   };
 
 export const loginUser =
-  (user: IUserLogin, navigate: any): ThunkResult<void> =>
+  (userData: IUserLogin, navigate: any): ThunkResult<void> =>
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const currentUser = await axiosInstance.post('/login', user);
-      if (currentUser.data.isDefaultPassword) {
+      const { data } = await axiosInstance.post('/login', userData);
+      const { user, tokens } = data.data;
+      if (user.isDefaultPassword) {
         navigate('/resetpassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
-      dispatch(setCurrentUser(currentUser.data));
+      dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
-      savetToken(
-        currentUser.data.tokens.accessToken,
-        currentUser.data.tokens.accessToken
-      );
+      savetToken(tokens.accessToken, tokens.accessToken);
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
