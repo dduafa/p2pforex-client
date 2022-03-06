@@ -18,19 +18,18 @@ export const signupUser =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const currentUser = await axiosInstance.post('/signup', user);
-      console.log(currentUser);
-      if (currentUser.data.isDefaultPassword) {
+      const {
+        data: { data },
+      } = await axiosInstance.post('/signup', user);
+      console.log(data);
+      if (data.user.isDefaultPassword) {
         navigate('/resetpassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
-      dispatch(setCurrentUser(currentUser.data));
+      dispatch(setCurrentUser(data.user));
       dispatch(setAuthenticated(true));
-      savetToken(
-        currentUser.data.tokens.accessToken,
-        currentUser.data.tokens.accessToken
-      );
+      savetToken(data.tokens.access, data.tokens.access);
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -43,13 +42,12 @@ export const changePassword =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const currentUser = await axiosInstance.post('/change_password', user);
-      dispatch(setCurrentUser(currentUser.data));
+      const {
+        data: { data },
+      } = await axiosInstance.post('/change_password', user);
+      dispatch(setCurrentUser(data.user));
       dispatch(setAuthenticated(true));
-      savetToken(
-        currentUser.data.tokens.accessToken,
-        currentUser.data.tokens.accessToken
-      );
+      savetToken(data.tokens.access, data.tokens.access);
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {

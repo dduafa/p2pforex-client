@@ -6,7 +6,7 @@ const signUpSchema = Yup.object().shape({
   lastname: Yup.string().required().label('Last name'),
   password: Yup.string().required().label('Password'),
   phonenumber: Yup.string().required().label('Phonenumber'),
-  role: Yup.string().notRequired().label('Role'),
+  role: Yup.string().required().label('Role'),
 });
 
 export default signUpSchema;

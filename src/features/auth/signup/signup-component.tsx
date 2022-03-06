@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { signupUser } from '../auth-service';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 import signUpSchema from './signup-schema';
@@ -8,9 +8,17 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const SignupComponent = () => {
-  const [pathname] = useState(window.location.pathname);
+  const [pathname, setPathname] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setPathname(window.location.pathname);
+
+    return () => {
+      setPathname('');
+    };
+  }, []);
 
   const {
     errors,
@@ -27,7 +35,7 @@ const SignupComponent = () => {
       lastname: '',
       email: '',
       phonenumber: '',
-      role: '',
+      role: 'normaluser',
     },
 
     validationSchema: signUpSchema,
