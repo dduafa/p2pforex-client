@@ -54,6 +54,7 @@ const SignupComponent = () => {
 
   return (
     <Container>
+      <h2>Sign Up</h2>
       <Form onSubmit={handleSubmit}>
         <div>
           <input
@@ -66,7 +67,9 @@ const SignupComponent = () => {
             value={values.firstname}
           />
         </div>
-
+        {touched.firstname && errors.firstname && (
+          <ErrorLabel>{errors.firstname}</ErrorLabel>
+        )}
         <div>
           <input
             aria-label="Last Name"
@@ -78,6 +81,9 @@ const SignupComponent = () => {
             value={values.lastname}
           />
         </div>
+        {touched.lastname && errors.lastname && (
+          <ErrorLabel>{errors.lastname}</ErrorLabel>
+        )}
         <div>
           <input
             aria-label="Email"
@@ -88,6 +94,9 @@ const SignupComponent = () => {
             type="text"
             value={values.email}
           />
+          {touched.email && errors.email && (
+            <ErrorLabel>{errors.email}</ErrorLabel>
+          )}
         </div>
         <div>
           <input
@@ -99,6 +108,9 @@ const SignupComponent = () => {
             type="text"
             value={values.phonenumber}
           />
+          {touched.phonenumber && errors.phonenumber && (
+            <ErrorLabel>{errors.phonenumber}</ErrorLabel>
+          )}
         </div>
         {pathname === '/adminsignup' && (
           <div>
@@ -112,6 +124,9 @@ const SignupComponent = () => {
               <option value={'admin'}>Admin</option>
               <option value={'superadmin'}>Superadmin</option>
             </select>
+            {touched.role && errors.role && (
+              <ErrorLabel>{errors.role}</ErrorLabel>
+            )}
           </div>
         )}
         <div>
@@ -126,7 +141,7 @@ const SignupComponent = () => {
           />
         </div>
         {touched.password && errors.password && (
-          <small className="text-danger form-text">{errors.password}</small>
+          <ErrorLabel>{errors.password}</ErrorLabel>
         )}
         <button type="submit" disabled={isSubmitting}>
           Sign Up
@@ -140,7 +155,7 @@ const Container = styled.div`
   display: 'flex';
   align-items: 'center';
   justify-content: 'center';
-  width: 50px;
+  width: 200px;
 `;
 
 const Form = styled.form`
@@ -150,7 +165,12 @@ const Form = styled.form`
   padding: 1.3rem;
   display: flex;
   flex-direction: column;
-  position: relative;
+`;
+
+const ErrorLabel = styled.small`
+  color: red;
+  padding: none;
+  font-size: 12px;
 `;
 
 export default SignupComponent;
