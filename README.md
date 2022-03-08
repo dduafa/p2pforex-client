@@ -17,11 +17,6 @@ Peer to peer plaform for exchanging currencies
 - Run `nvm install v16.14.0`
 - Run `nvm use v16.14.0`
 
-## VSCode Extensions
-
-- Graphql extensions for vscode
-- Syntax highlighting for graphql
-
 ## Getting Started
 
 - Clone the repository.
