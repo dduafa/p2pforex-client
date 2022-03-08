@@ -19,6 +19,7 @@ Peer to peer plaform for exchanging currencies
 
 ## Getting Started
 
+- You can choose between `npm` or `yarn`
 - Clone the repository.
 - Run `yarn install` to install the dependencies.
 - Run `yarn run start` to start the app.
