@@ -11,7 +11,7 @@ export const MainWrapper = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  
+
   @media screen and (min-width: 992px) {
     flex-direction: row;
     justify-content: center;

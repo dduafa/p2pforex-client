@@ -53,11 +53,11 @@ const SignupComponent = () => {
   });
 
   return (
-    <Container>
-      <h2>Sign Up</h2>
+    <Section>
+      <Title>Sign Up</Title>
       <Form onSubmit={handleSubmit}>
         <div>
-          <input
+          <Input
             aria-label="First name"
             name="firstname"
             onBlur={handleBlur}
@@ -71,7 +71,7 @@ const SignupComponent = () => {
           <ErrorLabel>{errors.firstname}</ErrorLabel>
         )}
         <div>
-          <input
+          <Input
             aria-label="Last Name"
             name="lastname"
             onBlur={handleBlur}
@@ -85,7 +85,7 @@ const SignupComponent = () => {
           <ErrorLabel>{errors.lastname}</ErrorLabel>
         )}
         <div>
-          <input
+          <Input
             aria-label="Email"
             name="email"
             onBlur={handleBlur}
@@ -99,7 +99,7 @@ const SignupComponent = () => {
           )}
         </div>
         <div>
-          <input
+          <Input
             aria-label="Phonenumber"
             name="phonenumber"
             onBlur={handleBlur}
@@ -130,7 +130,7 @@ const SignupComponent = () => {
           </div>
         )}
         <div>
-          <input
+          <Input
             aria-label="Password"
             name="password"
             onBlur={handleBlur}
@@ -147,16 +147,9 @@ const SignupComponent = () => {
           Sign Up
         </button>
       </Form>
-    </Container>
+    </Section>
   );
 };
-
-const Container = styled.div`
-  display: 'flex';
-  align-items: 'center';
-  justify-content: 'center';
-  width: 200px;
-`;
 
 const Form = styled.form`
   margin: 0 auto;
@@ -173,4 +166,46 @@ const ErrorLabel = styled.small`
   font-size: 12px;
 `;
 
+const Title = styled.h1`
+  font-size: 1rem;
+  line-height: 1.25rem;
+  margin-top: 0;
+  margin-left: 40%;
+`;
+
+const Section = styled.section`
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'center';
+  font-size: 1rem;
+  line-height: 1.5rem;
+  max-width: 35em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+  padding: 1rem 0.75rem;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+`;
+
+const Input = styled.input`
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 0.5rem;
+  font-style: normal;
+  font-weight: 400;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  
+  &:focus,
+  &:active {
+    box-shadow: rgb(210, 213, 217) 0px 0px 2px 1px,
+      rgb(227, 230, 232) 0px 0px 0px 3px;
+    border: 1px solid rgb(26, 33, 43);
+    outline: none;
+  }
+`;
 export default SignupComponent;
