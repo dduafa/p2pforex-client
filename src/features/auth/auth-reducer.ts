@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '@appredux/store';
-import { IUserData, IAuthState, IError } from './types';
+import { IUserData, IAuthState, Error } from './types';
 
 export const authSlice = 'authSlice';
 
@@ -27,7 +27,7 @@ const authReducer = createSlice({
     setAuthenticated: (state, { payload }: PayloadAction<boolean>) => {
       state.isAuthenticated = payload;
     },
-    setErrors: (state, { payload }: PayloadAction<IError>) => {
+    setErrors: (state, { payload }: PayloadAction<Error[]>) => {
       state.errors = payload;
     },
   },

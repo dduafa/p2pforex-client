@@ -57,7 +57,7 @@ export const loginUser =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const { data } = await axiosInstance.post('/login', userData);
+      const { data } = await axiosInstance.post('/signin', userData);
       const { user, tokens } = data.data;
       if (user.isDefaultPassword) {
         navigate('/resetpassword');

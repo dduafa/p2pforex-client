@@ -28,9 +28,8 @@ export interface IAuthState {
   user: IUserData | undefined;
   loading: boolean;
   isAuthenticated: boolean;
-  errors: IError | [];
+  errors: Error[] | [];
 }
-
-export interface IError {
-  [index: number]: { message: string };
+export interface Error {
+  message: string;
 }
