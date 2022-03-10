@@ -1,19 +1,19 @@
 import styled from 'styled-components';
+import AuthImage from '@assets/images/auth-background.jpg';
 
 export const MainWrapper = styled.main`
-  width: 100%;
-  height: 100%;
-  max-width: 1200px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  background-image: url(https://images.unsplash.com/photo-1565372781813-6e4d16bb4a3b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80);
+  background-repeat: no-repeat;
+  /* background-size: 50% 100vh; */
 
-  @media screen and (min-width: 992px) {
-    flex-direction: row;
-    justify-content: center;
+  @media (max-width: 550px) {
+    background-size: cover;
   }
 `;

@@ -32,27 +32,18 @@ interface Props {
 }
 
 export const StyledButton = styled.button`
+  height: 40px;
+  width: 100%;
+  margin-top: 1rem;
+  color: #ffffff;
+  background-color: #828282;
+  border-color: #b5b5b5;
   border-radius: 4px;
-  font-size: 15px;
-  color: ${({ $color }: Props) => ($color ? $color : '#fff')};
-  padding: ${({ $padding }) => ($padding ? $padding : '15px 50px 15px 50px')};
-  cursor: pointer;
-  width: ${({ $width }) => ($width ? $width : 'auto')};
-  background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : '#2f8bfd')};
-  align-self: ${({ $align }) => ($align ? $align : 'center')};
-  margin: ${({ $margin }) => $margin};
-  border: none;
-  position: ${({ $position }) => $position};
-  top: ${({ $top }) => $top};
-  color: ${({ $color }) => $color};
-  box-shadow: ${({ $boxShadow }) => $boxShadow};
-  border: ${({ $border }) => $border};
-
-  &:disabled {
-    background: #68a7cf;
-  }
+  font-size: 16px;
 
   &:hover {
-    background-color: #0072ff;
+    background-color: #b5b5b5;
+    border-color: #828282;
+    cursor: pointer;
   }
 `;

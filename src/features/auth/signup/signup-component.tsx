@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import signUpSchema from './signup-schema';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { StyledButton } from '@/components/common/button/button-styles';
 
 const SignupComponent = () => {
   const [pathname, setPathname] = useState('');
@@ -143,9 +144,9 @@ const SignupComponent = () => {
         {touched.password && errors.password && (
           <ErrorLabel>{errors.password}</ErrorLabel>
         )}
-        <button type="submit" disabled={isSubmitting}>
+        <StyledButton type="submit" disabled={isSubmitting}>
           Sign Up
-        </button>
+        </StyledButton>
       </Form>
     </Section>
   );
@@ -174,18 +175,16 @@ const Title = styled.h1`
 `;
 
 const Section = styled.section`
-  display: 'flex';
-  align-items: 'center';
-  justify-content: 'center';
   font-size: 1rem;
   line-height: 1.5rem;
-  max-width: 35em;
+  max-width: 35rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1.5rem;
   padding: 1rem 0.75rem;
   border: 1px solid lightgrey;
   border-radius: 4px;
+  background: white;
 `;
 
 const Input = styled.input`
@@ -199,7 +198,7 @@ const Input = styled.input`
   width: 100%;
   margin-top: 0.5rem;
   padding: 0.4rem 0.75rem;
-  
+
   &:focus,
   &:active {
     box-shadow: rgb(210, 213, 217) 0px 0px 2px 1px,
@@ -208,4 +207,5 @@ const Input = styled.input`
     outline: none;
   }
 `;
+
 export default SignupComponent;
