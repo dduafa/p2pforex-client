@@ -206,6 +206,9 @@ const Input = styled.input`
     border: 1px solid rgb(26, 33, 43);
     outline: none;
   }
+  &:not(:focus) {
+    caret-color: transparent;
+  }
 `;
 
 export default SignupComponent;
