@@ -1,7 +1,3 @@
-import React from 'react';
+import LoginComponent from '@/features/auth/login/login-component';
 
-const LoginPage = () => {
-  return <div>LoginPage</div>;
-};
-
-export default LoginPage;
+export default LoginComponent;
