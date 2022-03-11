@@ -5,15 +5,11 @@ interface Props {
   isLoading: boolean;
 }
 
+type LoadingProps = Props & React.HTMLProps<HTMLInputElement>;
+
 const WithLoading = (Component: React.ComponentType) => {
-  return function withLoadingComponent({
-    isLoading,
-    ...props
-  }: Props & React.HTMLProps<HTMLInputElement>) {
-    if (isLoading) {
-      return <Loader />;
-    }
-    return <Component {...props} />;
+  return function withLoadingComponent({ isLoading, ...props }: LoadingProps) {
+    return isLoading ? <Loader /> : <Component {...props} />;
   };
 };
 

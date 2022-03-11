@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { signupUser } from '../auth-service';
 import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components';
 import signUpSchema from './signup-schema';
@@ -147,6 +148,7 @@ const SignupComponent = () => {
         <StyledButton type="submit" disabled={isSubmitting}>
           Sign Up
         </StyledButton>
+        <StyledLink to={'/login'}>Log In</StyledLink>
       </Form>
     </Section>
   );
@@ -177,9 +179,7 @@ const Title = styled.h1`
 const Section = styled.section`
   font-size: 1rem;
   line-height: 1.5rem;
-  max-width: 35rem;
-  margin-left: auto;
-  margin-right: auto;
+  min-width: 28rem;
   margin-top: 1.5rem;
   padding: 1rem 0.75rem;
   border: 1px solid lightgrey;
@@ -211,4 +211,16 @@ const Input = styled.input`
   }
 `;
 
+export const StyledLink = styled(NavLink)`
+  background-color: #fafafa;
+  color: #5e5656;
+  text-decoration: none;
+  padding: 0.25rem;
+  margin-top: 2rem;
+  text-decoration: underline;
+
+  &:hover {
+    color: #0947e4;
+  }
+`;
 export default SignupComponent;

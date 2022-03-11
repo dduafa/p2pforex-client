@@ -27,7 +27,7 @@ export const signupUser =
       }
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
-      savetToken(tokens.access, tokens.access);
+      savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -44,7 +44,7 @@ export const changePassword =
       const { user, tokens } = data.data;
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
-      savetToken(tokens.access, tokens.access);
+      savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -66,7 +66,7 @@ export const loginUser =
       }
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
-      savetToken(tokens.accessToken, tokens.accessToken);
+      savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {

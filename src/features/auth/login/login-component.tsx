@@ -6,6 +6,7 @@ import loginSchema from './login-schema';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { StyledButton } from '@/components/common/button/button-styles';
+import { NavLink } from 'react-router-dom';
 
 const LoginComponent = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const LoginComponent = () => {
     async onSubmit(payload, { setSubmitting }) {
       try {
         setSubmitting(true);
-        await dispatch(loginUser(payload, navigate));
+        dispatch(loginUser(payload, navigate));
       } catch (e) {
         console.error(e);
       } finally {
@@ -74,6 +75,7 @@ const LoginComponent = () => {
         <StyledButton type="submit" disabled={isSubmitting}>
           Login
         </StyledButton>
+        <StyledLink to={'/signup'}>Sign Up</StyledLink>
       </Form>
     </Section>
   );
@@ -104,7 +106,7 @@ const Title = styled.h1`
 const Section = styled.section`
   font-size: 1rem;
   line-height: 1.5rem;
-  max-width: 35rem;
+  min-width: 28rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1.5rem;
@@ -135,6 +137,19 @@ const Input = styled.input`
   }
   &:not(:focus) {
     caret-color: transparent;
+  }
+`;
+
+export const StyledLink = styled(NavLink)`
+  background-color: #fafafa;
+  color: #5e5656;
+  text-decoration: none;
+  padding: 0.25rem;
+  margin-top: 2rem;
+  text-decoration: underline;
+
+  &:hover {
+    color: #0947e4;
   }
 `;
 

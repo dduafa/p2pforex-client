@@ -42,12 +42,9 @@ const SVG = styled.svg`
 `;
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  z-index: 1000001;
   opacity: 0.5;
-  z-index: 1000001; // or, higher
-  left: 0;
-  opacity: 0.7;
+  background-color: transparent;
 `;
 
 export default Loader;
