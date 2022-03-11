@@ -10,7 +10,8 @@ const AuthLayoutComponent = () => {
 
   return (
     <MainWrapper>
-      {errors.length > 0 &&
+      {errors &&
+        errors.length > 0 &&
         errors.map(({ message }, i) => (
           <AlertComponent key={i} message={message} severity="error" />
         ))}

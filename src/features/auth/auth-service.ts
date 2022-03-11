@@ -18,10 +18,10 @@ export const signupUser =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const { data } = await axiosInstance.post('/signup', userData);
+      const { data } = await axiosInstance.post('/api/signup', userData);
       const { user, tokens } = data.data;
       if (user.isDefaultPassword) {
-        navigate('/resetpassword');
+        navigate('/api/resetpassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
@@ -40,7 +40,7 @@ export const changePassword =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const { data } = await axiosInstance.post('/change_password', userData);
+      const { data } = await axiosInstance.post('/api/change_password', userData);
       const { user, tokens } = data.data;
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
@@ -57,10 +57,10 @@ export const loginUser =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const { data } = await axiosInstance.post('/signin', userData);
+      const { data } = await axiosInstance.post('/api/signin', userData);
       const { user, tokens } = data.data;
       if (user.isDefaultPassword) {
-        navigate('/resetpassword');
+        navigate('/api/resetpassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
