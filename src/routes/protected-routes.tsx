@@ -3,6 +3,8 @@ import { authSelector } from '@features/auth/auth-reducer';
 import AppRoutes from './app-routes';
 import { useRoutes } from 'react-router-dom';
 import WithLoading from '@/hocs/with-loading';
+import { Suspense } from 'react';
+import Loader from '@/components/common/loader/loader-svg';
 
 const ProtectedRoutes = () => {
   const { isAuthenticated } = useAppSelector(authSelector);
@@ -14,7 +16,11 @@ const LoadedRoutes = () => {
   const { loading } = useAppSelector(authSelector);
   const Routes = WithLoading(ProtectedRoutes);
 
-  return <Routes isLoading={loading} />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <Routes isLoading={loading} />
+    </Suspense>
+  );
 };
 
 export default LoadedRoutes;
