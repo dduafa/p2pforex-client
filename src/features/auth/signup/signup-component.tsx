@@ -116,16 +116,18 @@ const SignupComponent = () => {
         </div>
         {pathname === '/adminsignup' && (
           <div>
-            <select
+            <Select
               name="role"
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.role}
             >
-              <option>----</option>
+              <option value="" disabled>
+                Role
+              </option>
               <option value={'admin'}>Admin</option>
               <option value={'superadmin'}>Superadmin</option>
-            </select>
+            </Select>
             {touched.role && errors.role && (
               <ErrorLabel>{errors.role}</ErrorLabel>
             )}
@@ -174,6 +176,19 @@ const Title = styled.h1`
   line-height: 1.25rem;
   margin-top: 0;
   margin-left: 40%;
+`;
+
+const Select = styled.select`
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 0.5rem;
+  font-style: normal;
+  font-weight: 400;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.75rem;
 `;
 
 const Section = styled.section`

@@ -21,7 +21,7 @@ export const signupUser =
       const { data } = await axiosInstance.post('/api/signup', userData);
       const { user, tokens } = data.data;
       if (user.isDefaultPassword) {
-        navigate('/api/resetpassword');
+        navigate('/changepassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }
@@ -60,7 +60,7 @@ export const loginUser =
       const { data } = await axiosInstance.post('/api/signin', userData);
       const { user, tokens } = data.data;
       if (user.isDefaultPassword) {
-        navigate('/api/resetpassword');
+        navigate('/changepassword');
         setErrors([{ message: 'Reset Password' }]);
         return;
       }

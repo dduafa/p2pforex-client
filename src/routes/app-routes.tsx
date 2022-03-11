@@ -5,6 +5,7 @@ import { MainLayoutComponent, AuthLayoutComponent } from '@/components/layouts';
 const LoginPage = lazy(() => import('@pages/login-page'));
 const SignupPage = lazy(() => import('@pages/signup-page'));
 const DashboardPage = lazy(() => import('@pages/dashboard-page'));
+const ChangePasswordPage = lazy(() => import('@pages/change-password-page'));
 
 const AppRoutes = (isAuthenticated: boolean) => {
   return [
@@ -32,7 +33,7 @@ const AppRoutes = (isAuthenticated: boolean) => {
         { path: 'signup', element: <SignupPage /> },
         { path: 'adminsignup', element: <SignupPage /> },
         { path: 'login', element: <LoginPage /> },
-        { path: 'changepassword', element: <div>Change password page</div> },
+        { path: 'changepassword/:token', element: <ChangePasswordPage /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
