@@ -6,13 +6,11 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import signUpSchema from './signup-schema';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { StyledButton } from '@/components/common/button/button-styles';
 
 const SignupComponent = () => {
   const [pathname, setPathname] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setPathname(window.location.pathname);
@@ -45,7 +43,7 @@ const SignupComponent = () => {
     async onSubmit(payload, { setSubmitting }) {
       try {
         setSubmitting(true);
-        await dispatch(signupUser(payload, navigate));
+        await dispatch(signupUser(payload));
       } catch (e) {
         console.error(e);
       } finally {

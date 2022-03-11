@@ -1,7 +1,6 @@
 import axiosInstance from '@helpers/axios-instance';
 import {
   setLoading,
-  setErrors,
   setCurrentUser,
   setAuthenticated,
 } from './auth-reducer';
@@ -14,15 +13,14 @@ import dispatchError from '@/helpers/dispatch-error';
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, Action>;
 
 export const signupUser =
-  (userData: IUserSignup, navigate: any): ThunkResult<void> =>
+  (userData: IUserSignup): ThunkResult<void> =>
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
       const { data } = await axiosInstance.post('/api/signup', userData);
       const { user, tokens } = data.data;
       if (user.isDefaultPassword) {
-        navigate('/changepassword');
-        setErrors([{ message: 'Reset Password' }]);
+       console.log('Thanks for registering, please check your email to change password')
         return;
       }
       dispatch(setCurrentUser(user));
@@ -53,17 +51,12 @@ export const changePassword =
   };
 
 export const loginUser =
-  (userData: IUserLogin, navigate: any): ThunkResult<void> =>
+  (userData: IUserLogin): ThunkResult<void> =>
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
       const { data } = await axiosInstance.post('/api/signin', userData);
       const { user, tokens } = data.data;
-      if (user.isDefaultPassword) {
-        navigate('/changepassword');
-        setErrors([{ message: 'Reset Password' }]);
-        return;
-      }
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
       savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });

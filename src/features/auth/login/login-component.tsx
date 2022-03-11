@@ -4,13 +4,11 @@ import { loginUser } from '../auth-service';
 import styled from 'styled-components';
 import loginSchema from './login-schema';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { StyledButton } from '@/components/common/button/button-styles';
 import { NavLink } from 'react-router-dom';
 
 const LoginComponent = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const {
     errors,
@@ -31,7 +29,7 @@ const LoginComponent = () => {
     async onSubmit(payload, { setSubmitting }) {
       try {
         setSubmitting(true);
-        dispatch(loginUser(payload, navigate));
+        dispatch(loginUser(payload));
       } catch (e) {
         console.error(e);
       } finally {
