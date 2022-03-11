@@ -1,10 +1,8 @@
+import React from 'react';
 import Alert from '@mui/material/Alert';
-import { setErrors } from '@/features/auth/auth-reducer';
+import { setAlertInfo, setErrors } from '@/features/auth/auth-reducer';
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/appredux/hooks';
-
-import React from 'react';
-
 interface Props {
   message: string;
   //   onClose: (e: React.SyntheticEvent) => void;
@@ -15,7 +13,10 @@ const AlertComponent = ({ message, severity }: Props) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setTimeout(() => dispatch(setErrors([])), 3000);
+    setTimeout(() => {
+      dispatch(setErrors([]));
+      dispatch(setAlertInfo(undefined));
+    }, 3000);
   }, [dispatch]);
 
   return <Alert severity={severity}>{message}</Alert>;

@@ -120,9 +120,7 @@ const SignupComponent = () => {
               onChange={handleChange}
               value={values.role}
             >
-              <option value="" disabled>
-                Role
-              </option>
+              <option value={''} hidden>Select role</option>
               <option value={'admin'}>Admin</option>
               <option value={'superadmin'}>Superadmin</option>
             </Select>

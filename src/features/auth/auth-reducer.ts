@@ -9,6 +9,7 @@ const initialState: IAuthState = {
   isAuthenticated: false,
   errors: [],
   user: undefined,
+  alertInfo: undefined,
 };
 
 const authReducer = createSlice({
@@ -30,10 +31,19 @@ const authReducer = createSlice({
     setErrors: (state, { payload }: PayloadAction<Error[]>) => {
       state.errors = payload;
     },
+    setAlertInfo: (state, { payload }: PayloadAction<string | undefined>) => {
+      state.alertInfo = payload;
+    },
   },
 });
 
-export const { setLoading, setErrors, setCurrentUser, setAuthenticated } =
-  authReducer.actions;
+export const {
+  setLoading,
+  setErrors,
+  setCurrentUser,
+  setAuthenticated,
+  setAlertInfo,
+} = authReducer.actions;
+
 export const authSelector = (state: RootState) => state.authSlice;
 export default authReducer.reducer;

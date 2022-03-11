@@ -3,6 +3,7 @@ import {
   setLoading,
   setCurrentUser,
   setAuthenticated,
+  setAlertInfo,
 } from './auth-reducer';
 import { Dispatch, Action, ThunkAction } from '@reduxjs/toolkit';
 import { RootState } from '@appredux/store';
@@ -17,15 +18,20 @@ export const signupUser =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
+      console.log(userData);
       const { data } = await axiosInstance.post('/api/signup', userData);
-      const { user, tokens } = data.data;
+      const { user } = data.data;
       if (user.isDefaultPassword) {
-       console.log('Thanks for registering, please check your email to change password')
+        const { emailLink } = data.data;
+        dispatch(setAlertInfo(emailLink));
+        console.log(emailLink);
         return;
       }
+      const { tokens } = data.data;
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
       savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });
+      dispatch(setAlertInfo('Signup successful'));
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -38,11 +44,15 @@ export const changePassword =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      const { data } = await axiosInstance.post('/api/change_password', userData);
+      const { data } = await axiosInstance.post(
+        '/api/change_password',
+        userData
+      );
       const { user, tokens } = data.data;
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
       savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });
+      dispatch(setAlertInfo('Password changed successful'));
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {
@@ -60,6 +70,7 @@ export const loginUser =
       dispatch(setCurrentUser(user));
       dispatch(setAuthenticated(true));
       savetToken({ accessToken: tokens.access, refreshToken: tokens.refresh });
+      dispatch(setAlertInfo('Login successful'));
     } catch (e) {
       dispatchError(e, dispatch);
     } finally {

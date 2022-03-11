@@ -29,6 +29,7 @@ export interface IAuthState {
   loading: boolean;
   isAuthenticated: boolean;
   errors: Error[] | [];
+  alertInfo: string | undefined;
 }
 export interface Error {
   message: string;

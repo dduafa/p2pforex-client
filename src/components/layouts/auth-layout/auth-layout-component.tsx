@@ -6,7 +6,7 @@ import { useAppSelector } from '@appredux/hooks';
 import { authSelector } from '@features/auth/auth-reducer';
 
 const AuthLayoutComponent = () => {
-  const { errors } = useAppSelector(authSelector);
+  const { errors, alertInfo } = useAppSelector(authSelector);
 
   return (
     <MainWrapper>
@@ -16,6 +16,7 @@ const AuthLayoutComponent = () => {
           <AlertComponent key={i} message={message} severity="error" />
         ))}
 
+      {alertInfo && <AlertComponent message={alertInfo} severity="success" />}
       <Outlet />
     </MainWrapper>
   );
