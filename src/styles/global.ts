@@ -1,29 +1,43 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  html {
+    /* font-size: 62.5%; */
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif; 
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+      
+  }
+
   *,
   *::before,
   *::after {
+    box-sizing: inherit;
+  }
+
+  body, h1, h2, h3, h4, h5, h6, ol, ul {
     margin: 0;
     padding: 0;
     outline: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif; 
+    font-weight: normal;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   #root {
-      margin: 0 auto;
-  }
-
-  html {
-    /* font-size: 62.5%; */
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      display: 'flex';
-      align-items: 'center';
-      justify-content:'center';
+    margin: 0 auto;
   }
 `;
 

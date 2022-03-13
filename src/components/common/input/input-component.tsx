@@ -7,7 +7,7 @@ interface InputProps {
   name: string;
 }
 
-const InputComponent = ({ label, error, name, ...props }: InputProps) => {
+const InputComponent = ({ label, error, name, ...props }: InputProps ) => {
   return (
     <Container>
       <Label>{label}</Label>
