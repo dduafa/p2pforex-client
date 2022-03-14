@@ -7,8 +7,8 @@ import { Suspense } from 'react';
 import Loader from '@/components/common/loader/loader-svg';
 
 const ProtectedRoutes = () => {
-  const { isAuthenticated } = useAppSelector(authSelector);
-  const routes = AppRoutes(isAuthenticated);
+  const { isAuthenticated, user } = useAppSelector(authSelector);
+  const routes = AppRoutes({ isAuthenticated, role: user?.role });
   return useRoutes(routes);
 };
 
