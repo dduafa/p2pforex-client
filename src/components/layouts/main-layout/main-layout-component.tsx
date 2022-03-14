@@ -1,9 +1,15 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import MainHeaderComponent from '../common/header/main/main-header-component';
 import AlertComponent from '@/components/common/alert/alert-component';
 import { useAppSelector } from '@appredux/hooks';
 import { authSelector } from '@features/auth/auth-reducer';
+import {
+  Nav,
+  Logo,
+  SearchInputContainer,
+  SearchInput,
+  UserProfile,
+} from './main-layout-styles';
 
 const MainLayoutComponent = () => {
   const { errors, alertInfo, user } = useAppSelector(authSelector);
@@ -17,12 +23,19 @@ const MainLayoutComponent = () => {
         ))}
 
       {alertInfo && <AlertComponent message={alertInfo} severity="success" />}
-
+      <header>
+        <Nav>
+          <Logo>Logo</Logo>
+          <SearchInputContainer>
+            <SearchInput type="text" placeholder="Search" />
+          </SearchInputContainer>
+          <UserProfile>
+            <span>{`${user?.firstname} ${user?.lastname}`}</span>
+            <i className="bx bx-chevron-down"></i>
+          </UserProfile>
+        </Nav>
+      </header>
       <main>
-        <MainHeaderComponent
-          firstname={user?.firstname}
-          lastname={user?.lastname}
-        />
         <Outlet />
       </main>
     </div>

@@ -1,6 +1,10 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
-import { MainLayoutComponent, AuthLayoutComponent } from '@/components/layouts';
+import {
+  MainLayoutComponent,
+  AuthLayoutComponent,
+  AdminLayoutComponent,
+} from '@/components/layouts';
 
 const LoginPage = lazy(() => import('@pages/login-page'));
 const SignupPage = lazy(() => import('@pages/signup-page'));
@@ -12,7 +16,7 @@ const AppRoutes = (isAuthenticated: boolean) => {
     {
       path: '/',
       element: isAuthenticated ? (
-        <MainLayoutComponent />
+        <AdminLayoutComponent />
       ) : (
         <Navigate to="/login" />
       ),
