@@ -12,7 +12,6 @@ function App() {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <ErrorBoundary FallbackComponent={ErrorFallbackComponent}>
-            {/* <AppRoutes /> */}
             <ProtectedRoutes />
           </ErrorBoundary>
         </PersistGate>
