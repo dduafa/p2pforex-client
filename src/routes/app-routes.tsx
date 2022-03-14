@@ -7,8 +7,9 @@ import {
 } from '@/components/layouts';
 
 const LoginPage = lazy(() => import('@pages/login-page'));
-const SignupPage = lazy(() => import('@pages/signup-page'));
 const DashboardPage = lazy(() => import('@pages/dashboard-page'));
+const SignupPage = lazy(() => import('@pages/signup-page'));
+const ListingsPage = lazy(() => import('@/pages/listings-page'));
 const ChangePasswordPage = lazy(() => import('@pages/change-password-page'));
 
 const AppRoutes = (isAuthenticated: boolean) => {
@@ -28,10 +29,23 @@ const AppRoutes = (isAuthenticated: boolean) => {
     },
     {
       path: '/',
+      element: isAuthenticated ? (
+        <MainLayoutComponent />
+      ) : (
+        <Navigate to="/login" />
+      ),
+      children: [
+        { path: 'listings', element: <ListingsPage /> },
+        { path: '/', element: <Navigate to="/listings" /> },
+        { path: '*', element: <Navigate to="/404" /> },
+      ],
+    },
+    {
+      path: '/',
       element: !isAuthenticated ? (
         <AuthLayoutComponent />
       ) : (
-        <Navigate to="dashboard" />
+        <Navigate to="listings" />
       ),
       children: [
         { path: 'signup', element: <SignupPage /> },
