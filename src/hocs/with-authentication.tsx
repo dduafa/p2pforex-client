@@ -3,13 +3,13 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from '@appredux/hooks';
 import { authSelector } from '@features/auth/auth-reducer';
 
-const WithAuthticated = (Component: React.ComponentType) => {
-  const { isAuthenticated } = useAppSelector(authSelector);
-  const location = useLocation();
-
-  return function withAuthticatedComponent({
+const WithAuthentication = (Component: React.ComponentType) => {
+  return function WithAuthenticationComponent({
     ...props
   }: React.HTMLProps<HTMLInputElement>) {
+    const { isAuthenticated } = useAppSelector(authSelector);
+    const location = useLocation();
+
     return isAuthenticated ? (
       <Component {...props} />
     ) : (
@@ -18,4 +18,4 @@ const WithAuthticated = (Component: React.ComponentType) => {
   };
 };
 
-export default WithAuthticated;
+export default WithAuthentication;

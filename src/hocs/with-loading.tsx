@@ -1,15 +1,15 @@
 import React from 'react';
 import Loader from '@components/common/loader/loader-svg';
-
-interface Props {
-  isLoading: boolean;
-}
-
-type LoadingProps = Props & React.HTMLProps<HTMLInputElement>;
+import { authSelector } from '@features/auth/auth-reducer';
+import { useAppSelector } from '@appredux/hooks';
 
 const WithLoading = (Component: React.ComponentType) => {
-  return function withLoadingComponent({ isLoading, ...props }: LoadingProps) {
-    return isLoading ? <Loader /> : <Component {...props} />;
+  return function WithLoadingComponent({
+    ...props
+  }: React.HTMLProps<HTMLInputElement>) {
+    const { loading } = useAppSelector(authSelector);
+
+    return loading ? <Loader /> : <Component {...props} />;
   };
 };
 

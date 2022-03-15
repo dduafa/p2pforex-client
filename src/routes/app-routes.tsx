@@ -1,6 +1,9 @@
 import { lazy } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
 import { MainLayout, AuthLayout, AdminLayout } from '@/components/layouts';
+import { useAppSelector } from '@appredux/hooks';
+import { authSelector } from '@features/auth/auth-reducer';
+import WithLoading from '@/hocs/with-loading';
 
 const LoginPage = lazy(() => import('@pages/login-page'));
 const DashboardPage = lazy(() => import('@pages/dashboard-page'));
@@ -8,16 +11,10 @@ const SignupPage = lazy(() => import('@pages/signup-page'));
 const ListingsPage = lazy(() => import('@/pages/listings-page'));
 const ChangePasswordPage = lazy(() => import('@pages/change-password-page'));
 
-interface UserPermissions {
-  isAuthenticated: boolean;
-  role: string;
-}
+const AppRoutes = () => {
+  const { isAuthenticated } = useAppSelector(authSelector);
 
-const AppRoutes = ({
-  isAuthenticated,
-  role = 'normaluser',
-}: Partial<UserPermissions>) => {
-  return [
+  const elements = [
     {
       path: '/',
       element: isAuthenticated ? <MainLayout /> : <Navigate to="/login" />,
@@ -29,11 +26,14 @@ const AppRoutes = ({
     {
       path: '/',
       element: <AdminLayout />,
-      children: [{ path: 'dashboard', element: <DashboardPage role={role} /> }],
+      children: [
+        { path: 'dashboard', element: <DashboardPage /> },
+        { path: '*', element: <Navigate to="/404" /> },
+      ],
     },
     {
       path: '/',
-      element: !isAuthenticated ? <AuthLayout /> : <Navigate to="listings" />,
+      element: !isAuthenticated ? <AuthLayout /> : <Navigate to="/listings" />,
       children: [
         { path: 'signup', element: <SignupPage /> },
         { path: 'adminsignup', element: <SignupPage /> },
@@ -42,7 +42,10 @@ const AppRoutes = ({
         { path: '*', element: <Navigate to="/404" /> },
       ],
     },
+    { path: '/404', element: <h1>Page Not Found</h1> },
   ];
+
+  return useRoutes(elements);
 };
 
-export default AppRoutes;
+export default WithLoading(AppRoutes);

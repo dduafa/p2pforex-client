@@ -3,8 +3,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { store, persistor } from './appredux/store';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import ProtectedRoutes from './routes/protected-routes';
 import ErrorFallbackComponent from '@/components/common/error-fallback/error-fallback-component';
+import { Suspense } from 'react';
+import Loader from './components/common/loader/loader-svg';
+import AppRoutes from './routes/app-routes';
 
 function App() {
   return (
@@ -12,7 +14,9 @@ function App() {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <ErrorBoundary FallbackComponent={ErrorFallbackComponent}>
-            <ProtectedRoutes />
+            <Suspense fallback={<Loader />}>
+              <AppRoutes />
+            </Suspense>
           </ErrorBoundary>
         </PersistGate>
       </Provider>
