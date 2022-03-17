@@ -18,7 +18,6 @@ export const signupUser =
   async (dispatch: Dispatch) => {
     try {
       dispatch(setLoading(true));
-      console.log(userData);
       const { data } = await axiosInstance.post('/api/signup', userData);
       const { user } = data.data;
       if (user.isDefaultPassword) {
