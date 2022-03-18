@@ -1,17 +1,30 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import authReducer from './auth-reducer';
+import { setAuthenticated } from './auth-reducer';
 
-const initialState = {
-  loading: false,
-  isAuthenticated: false,
-  errors: [],
-  user: undefined,
-  alertInfo: undefined,
-};
-
+const updateState = ({
+  loading = false,
+  isAuthenticated = false,
+  errors = [],
+  user = undefined,
+  alertInfo = undefined,
+}) => ({
+  loading,
+  isAuthenticated,
+  errors,
+  user,
+  alertInfo,
+});
 describe('auth-reducer', () => {
   it('should return the initial state, given NO `initialState` and NO `action`', () => {
-    const resultFromReducer = authReducer(undefined, {} as AnyAction);
-    expect(resultFromReducer).toEqual(initialState);
+    const actualState = authReducer(undefined, {} as AnyAction);
+    const initialState = updateState({});
+    expect(actualState).toEqual(initialState);
+  });
+
+  it('should set `isAuthenticated` to true, given NO `initialState` and calling `setAuthenticated(true)` action', () => {
+    const actualState = authReducer(undefined, setAuthenticated(true));
+    const expectedState = updateState({ isAuthenticated: true });
+    expect(actualState).toEqual(expectedState);
   });
 });
