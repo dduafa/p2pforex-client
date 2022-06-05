@@ -1,3 +1,3 @@
-import SignupComponent from '@/features/auth/signup/signup-component';
+import SignupComponent from 'features/auth/signup/signup-component';
 
 export default SignupComponent;

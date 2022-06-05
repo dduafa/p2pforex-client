@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAppSelector } from '@appredux/hooks';
-import { authSelector } from '@features/auth/auth-reducer';
+import { useAppSelector } from 'redux/hooks';
+import { authSelector } from 'features/auth/auth-reducer';
 
 const WithAuthentication = (Component: React.ComponentType) => {
   return function WithAuthenticationComponent({

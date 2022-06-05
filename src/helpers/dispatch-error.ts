@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { setErrors } from '@/features/auth/auth-reducer';
+import { setErrors } from 'features/auth/auth-reducer';
 import { Dispatch } from '@reduxjs/toolkit';
 
 const dispatchError = (error: any, dispatch: Dispatch): void => {

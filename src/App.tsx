@@ -1,9 +1,9 @@
 import { Provider } from 'react-redux';
 import { ErrorBoundary } from 'react-error-boundary';
-import { store, persistor } from './appredux/store';
+import { store, persistor } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import ErrorFallbackComponent from '@/components/common/error-fallback/error-fallback-component';
+import ErrorFallbackComponent from 'components/common/error-fallback/error-fallback-component';
 import { Suspense } from 'react';
 import Loader from './components/common/loader/loader-svg';
 import AppRoutes from './routes/app-routes';

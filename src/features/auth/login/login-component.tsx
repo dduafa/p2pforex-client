@@ -4,7 +4,7 @@ import { loginUser } from '../auth-service';
 import styled from 'styled-components';
 import loginSchema from './login-schema';
 import { useDispatch } from 'react-redux';
-import { StyledButton } from '@/components/common/button/button-styles';
+import { StyledButton } from 'components/common/button/button-styles';
 import { NavLink } from 'react-router-dom';
 
 const LoginComponent = () => {

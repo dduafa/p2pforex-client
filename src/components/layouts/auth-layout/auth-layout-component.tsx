@@ -1,9 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { MainWrapper } from './auth-layout-styles';
-import AlertComponent from '@/components/common/alert/alert-component';
-import { useAppSelector } from '@appredux/hooks';
-import { authSelector } from '@features/auth/auth-reducer';
+import AlertComponent from 'components/common/alert/alert-component';
+import { useAppSelector } from 'redux/hooks';
+import { authSelector } from 'features/auth/auth-reducer';
 
 const AuthLayoutComponent = () => {
   const { errors, alertInfo } = useAppSelector(authSelector);

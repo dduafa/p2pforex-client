@@ -1,4 +1,4 @@
-import axiosInstance from '@helpers/axios-instance';
+import axiosInstance from 'helpers/axios-instance';
 import {
   setLoading,
   setCurrentUser,
@@ -6,10 +6,10 @@ import {
   setAlertInfo,
 } from './auth-reducer';
 import { Dispatch, Action, ThunkAction } from '@reduxjs/toolkit';
-import { RootState } from '@appredux/store';
+import { RootState } from 'redux/store';
 import { IUserLogin, IUserSignup, IChangePassword } from './types';
-import { savetToken, clearTokens } from '@helpers/localstorage';
-import dispatchError from '@/helpers/dispatch-error';
+import { savetToken, clearTokens } from 'helpers/localstorage';
+import dispatchError from 'helpers/dispatch-error';
 
 export type ThunkResult<R> = ThunkAction<R, RootState, undefined, Action>;
 

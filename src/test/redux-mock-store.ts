@@ -2,7 +2,7 @@ import thunk from 'redux-thunk';
 import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit';
 import createMockStore from 'redux-mock-store';
 
-import { RootState } from '@/appredux/store';
+import { RootState } from 'redux/store';
 
 type DispatchExts = ThunkDispatch<RootState, void, AnyAction>;
 

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import signUpSchema from './signup-schema';
 import { useDispatch } from 'react-redux';
-import { StyledButton } from '@/components/common/button/button-styles';
+import { StyledButton } from 'components/common/button/button-styles';
 
 const SignupComponent = () => {
   const [pathname, setPathname] = useState('');

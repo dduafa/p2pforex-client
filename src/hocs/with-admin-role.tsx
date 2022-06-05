@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { authSelector } from '@features/auth/auth-reducer';
-import { useAppSelector } from '@appredux/hooks';
+import { authSelector } from 'features/auth/auth-reducer';
+import { useAppSelector } from 'redux/hooks';
 
 const WithAdminRole = (Component: React.ComponentType) => {
   return function WithAdminRoleComponent({

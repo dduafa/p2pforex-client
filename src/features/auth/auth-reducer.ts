@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '@appredux/store';
+import { RootState } from 'redux/store';
 import { IUserData, IAuthState, Error } from './types';
 
 export const authSlice = 'authSlice';

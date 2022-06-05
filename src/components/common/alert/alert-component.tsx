@@ -1,8 +1,8 @@
 import React from 'react';
 import Alert from '@mui/material/Alert';
-import { setAlertInfo, setErrors } from '@/features/auth/auth-reducer';
+import { setAlertInfo, setErrors } from 'features/auth/auth-reducer';
 import { useEffect } from 'react';
-import { useAppDispatch } from '@/appredux/hooks';
+import { useAppDispatch } from 'redux/hooks';
 interface Props {
   message: string;
   //   onClose: (e: React.SyntheticEvent) => void;

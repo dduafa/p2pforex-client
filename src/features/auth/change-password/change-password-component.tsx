@@ -3,7 +3,7 @@ import { changePassword } from '../auth-service';
 
 import styled from 'styled-components';
 import changePasswordSchema from './change-password-schema';
-import { StyledButton } from '@/components/common/button/button-styles';
+import { StyledButton } from 'components/common/button/button-styles';
 // import { useAppDispatch } from '@/appredux/hooks';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
